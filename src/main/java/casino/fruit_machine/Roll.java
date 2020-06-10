@@ -1,4 +1,4 @@
-package fruit_machine;
+package casino.fruit_machine;
 
 public class Roll {
     public enum Sign {
@@ -24,7 +24,7 @@ public class Roll {
             return Sign.values()[value];
         }
     
-        private Sign(int sign) {
+        Sign(int sign) {
             this.sign = sign;
         }
 

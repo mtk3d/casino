@@ -3,12 +3,12 @@ package casino;
 import javax.swing.*;
 
 public class MyFrame extends JFrame {
-    GraphicsDemo graphicsDemo = new GraphicsDemo();
+    Casino casino = new Casino();
 
     public MyFrame() {
-        this.setSize(420, 420);
+        this.setSize(420, 300);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.add(graphicsDemo);
+        this.add(casino);
         this.setVisible(true);
     }
 }

@@ -1,7 +1,7 @@
 package casino;
 
 public class Money {
-    private int value;
+    private final int value;
 
     private Money(int value) {
         this.value = value;
@@ -19,7 +19,7 @@ public class Money {
         return new Money(this.value + money.value());
     }
 
-    public Money substract(Money money) {
+    public Money subtract(Money money) {
         return new Money(this.value - money.value());
     }
 
@@ -28,6 +28,14 @@ public class Money {
     }
 
     public String toString() {
-        return String.valueOf(this.value) + "$";
+        return this.value + "$";
+    }
+
+    public boolean isMoreThan(Money money) {
+        return this.value > money.value();
+    }
+
+    public boolean isMoreOrEqual(Money money) {
+        return this.value >= money.value();
     }
 }

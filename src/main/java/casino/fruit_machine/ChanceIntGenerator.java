@@ -1,12 +1,9 @@
-package fruit_machine;
+package casino.fruit_machine;
 
 import java.util.Random;
 
 public class ChanceIntGenerator {
     Random generator;
-    int first;
-    int second;
-    int third;
     int chance;
     int currentChance;
     int limit;

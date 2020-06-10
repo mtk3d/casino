@@ -1,4 +1,4 @@
-package fruit_machine;
+package casino.fruit_machine;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class RollImages {
-    List<BufferedImage> images = new ArrayList();
+    private List<BufferedImage> images = new ArrayList<>();
 
     RollImages() {
         this.images.add(RollImages.loadImage("./images/apple.png"));

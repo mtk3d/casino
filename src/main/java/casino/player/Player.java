@@ -1,4 +1,4 @@
-package player;
+package casino.player;
 
 import casino.Money;
 import casino.Drawable;
@@ -20,14 +20,18 @@ public class Player implements Drawable {
     }
 
     public void take(Money money) {
-        this.money = this.money.substract(money);
+        this.money = this.money.subtract(money);
     }
 
-    public int money() {
-        return this.money.value();
+    public Money money() {
+        return this.money;
+    }
+
+    public boolean hasEnough(Money money) {
+        return this.money.isMoreOrEqual(money);
     }
 
     public void draw(Graphics2D g2D) {
-        g2D.drawString("Your money: " + this.money.toString(), 10, 20);
+        g2D.drawString("Your money: " + this.money.toString(), 70, 30);
     }
 }

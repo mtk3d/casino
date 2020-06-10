@@ -1,12 +1,11 @@
-package fruit_machine;
+package casino.fruit_machine;
 
-import java.util.Random;
 import java.util.List;
 import java.util.ArrayList;
 import java.awt.Graphics2D;
 import casino.Drawable;
 import casino.Money;
-import player.Player;
+import casino.player.Player;
 
 public class FruitMachine implements Drawable {
     private List<Roll> rolls;
@@ -21,10 +20,11 @@ public class FruitMachine implements Drawable {
         this.rollImages = rollImages;
         this.button = HandButton.basic();
         this.player = player;
+        this.pullLever();
     }
 
     public static FruitMachine standard(Player player) {
-        List<Roll> rolls = new ArrayList<Roll>();
+        List<Roll> rolls = new ArrayList<>();
         rolls.add(Roll.standard());
         rolls.add(Roll.standard());
         rolls.add(Roll.standard());
@@ -46,14 +46,6 @@ public class FruitMachine implements Drawable {
             state &= roll.isSame(this.rolls.get(0));
         }
         return state;
-    }
-
-    public List<Roll.Sign> getSigns() {
-        List<Roll.Sign> signs = new ArrayList<Roll.Sign>();
-        for (Roll roll : this.rolls) {
-            signs.add(roll.getSign());
-        }
-        return signs;
     }
 
     public Money getWin() {
@@ -82,10 +74,12 @@ public class FruitMachine implements Drawable {
     }
 
     public void clickOn(int x, int y) {
-        if (this.button.isInRange(x, y)) {
-            this.player.take(Money.of(45));
-            this.pullLever();
-            this.player.give(this.getWin());
+        if (this.button.hasBeenClicked(x, y)) {
+            if (this.player.hasEnough(Money.of(35))) {
+                this.player.take(Money.of(35));
+                this.pullLever();
+                this.player.give(this.getWin());
+            }
         }
     }
 }
