@@ -3,6 +3,7 @@ package casino.view;
 import casino.Drawable;
 import casino.View;
 import casino.player.Player;
+import casino.roulette.RouletteGame;
 import casino.shared.Button;
 
 import java.awt.*;
@@ -13,12 +14,15 @@ public class Roulette implements View {
     private List<Drawable> drawableItems = new ArrayList<>();
     private Button backButton;
     private String nextView = null;
+    private RouletteGame roulette;
 
     public Roulette(Player player) {
         backButton = Button.backButton();
-        drawableItems.add(backButton);
+        roulette = RouletteGame.standard(player);
 
-        backButton = Button.backButton();
+        drawableItems.add(backButton);
+        drawableItems.add(roulette);
+        drawableItems.add(player);
     }
 
     @Override
@@ -26,6 +30,7 @@ public class Roulette implements View {
         if (backButton.hasBeenClicked(x, y)) {
             nextView = backButton.getValue();
         }
+        roulette.clickOn(x, y);
     }
 
     @Override
