@@ -21,7 +21,7 @@ public class Board implements Drawable, Clickable {
 
     public static Board generate() {
         List<Field> fields = new ArrayList<>();
-        int offsetX = 300;
+        int offsetX = 290;
         int offsetY = 20;
         fields.add(new Field(offsetX, offsetY, 90, 20, "0", new Rule(new Integer[]{0}, 35)));
 
@@ -30,7 +30,7 @@ public class Board implements Drawable, Clickable {
         List<Integer> redFields = Arrays.asList(1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36);
         List<Integer> blackFields = Arrays.asList(2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35);
         for (int i = 1; i <= 36; i++) {
-            Rule rule = new Rule(new Integer[]{1}, 35);
+            Rule rule = new Rule(new Integer[]{i}, 35);
 
             if (redFields.contains(i)) {
                 fields.add(Field.standard(offsetX + x, offsetY + y, String.valueOf(i), rule, Color.RED));
@@ -78,6 +78,14 @@ public class Board implements Drawable, Clickable {
         fields.add(new Field(offsetX, offsetY + 180, 40, 40, "even", even));
         Rule nineteenTo36 = new Rule(IntStream.range(19,36).boxed().collect(Collectors.toList()), 1);
         fields.add(new Field(offsetX, offsetY + 220, 40, 40, "19-36", nineteenTo36));
+
+        for (int i = 1; i <= 12; i++) {
+            int end = i * 3;
+            int start = end - 3;
+            Rule rule = new Rule(IntStream.range(start,end).boxed().collect(Collectors.toList()), 5);
+
+            fields.add(Field.standard(offsetX + 160, offsetY + (i * 20), "5to1", rule));
+        }
 
         return new Board(fields);
     }

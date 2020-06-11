@@ -32,11 +32,11 @@ public class Bet implements Drawable, Clickable {
     @Override
     public void draw(Graphics2D g2D) {
         g2D.setColor(Color.BLUE);
-        g2D.fillOval(x + 9, y + 1, 18, 18);
+        g2D.fillOval((int)(x + (.5 * width) - (.5 * 18)), (int)(y + (.5 * height) - (.5 * 18)), 18, 18);
         g2D.setColor(Color.WHITE);
         FontMetrics fm = g2D.getFontMetrics();
         int stringWidth = fm.stringWidth(money.toString());
-        g2D.drawString(money.toString(), (float)(x + (.5 * width) - (.5 * stringWidth)), (float)(y + 15));
+        g2D.drawString(money.toString(), (float)(x + (.5 * width) - (.5 * stringWidth)), (float)(y + (.5 * height) + 5));
     }
 
     @Override
@@ -49,6 +49,6 @@ public class Bet implements Drawable, Clickable {
     }
 
     public Money getWin() {
-        return Money.of(this.money.value() * rule.getMultiplier());
+        return money.sum(Money.of(money.value() * rule.getMultiplier()));
     }
 }
