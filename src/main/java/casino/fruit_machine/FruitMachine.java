@@ -65,12 +65,12 @@ public class FruitMachine implements Drawable {
         int i = 0;
         for (Roll roll : this.rolls) {
             int val = roll.getValue();
-            g2D.drawImage(rollImages.getImageOf(val), 100+i, 80, 60, 60, null);
+            g2D.drawImage(rollImages.getImageOf(val), 100+i, 130, 60, 60, null);
             i += 75;
         }
         this.button.draw(g2D);
-        g2D.drawString(this.allTheSame() ? "Win" : "Lose", 20, 300);
-        g2D.drawString(this.allTheSame() ? this.getWin().toString() : "0", 100, 300);
+        g2D.drawString(this.allTheSame() ? "Win" : "Lose", 20, 310);
+        g2D.drawString(this.allTheSame() ? this.getWin().toString() : "0", 100, 310);
     }
 
     public void clickOn(int x, int y) {

@@ -8,6 +8,6 @@ public class HandButton extends Button {
     }
 
     public static HandButton basic() {
-        return new HandButton(300, 280, 100, 20);
+        return new HandButton(300, 295, 100, 20);
     }
 }
