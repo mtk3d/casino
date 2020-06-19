@@ -12,6 +12,7 @@ public class Button implements Drawable, Clickable {
     private final int y;
     private final int width;
     private final int height;
+    private boolean active = true;
 
     public Button(String text, String value, int x, int y, int width, int height) {
         this.text = text;
@@ -27,7 +28,18 @@ public class Button implements Drawable, Clickable {
     }
 
     public boolean hasBeenClicked(int x, int y) {
+        if (!active) {
+            return false;
+        }
         return x > this.x && x < this.x + this.width && y > this.y && y < this.y + this.height;
+    }
+
+    public void deactivate() {
+        active = false;
+    }
+
+    public void activate() {
+        active = true;
     }
 
     public String getValue() {
@@ -36,7 +48,9 @@ public class Button implements Drawable, Clickable {
 
     @Override
     public void draw(Graphics2D g2D) {
-        g2D.drawRect(x, y, width, height);
-        g2D.drawString(text, (float)x + 10, (float)(y + (.5 * height) + 4));
+        if (active) {
+            g2D.drawRect(x, y, width, height);
+            g2D.drawString(text, (float)x + 10, (float)(y + (.5 * height) + 4));
+        }
     }
 }

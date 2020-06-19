@@ -1,6 +1,7 @@
 package casino.blackjack;
 
 import casino.Drawable;
+import com.sun.tools.javac.util.StringUtils;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -22,19 +23,20 @@ public class Card implements Drawable {
         this.faceUp = faceUp;
     }
 
-    public String getName() {
-        return sign+"-"+color;
+    public String getSign() {
+        return sign;
     }
 
     public int getValue() {
-        int value = Integer.parseInt(sign);
-        if (value >= 2 && value <= 10) {
-            return value;
-        } else if (sign == "as") {
+        if (sign.equals("as")) {
             return 0;
-        } else {
+        }
+
+        if (sign.equals("krol") || sign.equals("dama") || sign.equals("walet")) {
             return 10;
         }
+
+        return Integer.parseInt(sign);
     }
 
     public void faceUp() {
@@ -60,6 +62,6 @@ public class Card implements Drawable {
             cardImage = reverseImage;
         }
 
-        g2D.drawImage(cardImage, x, y, 40, 60, null);
+        g2D.drawImage(cardImage, x, y, 60, 80, null);
     }
 }

@@ -30,6 +30,8 @@ public class Blackjack implements View {
         if (backButton.hasBeenClicked(x, y)) {
             nextView = backButton.getValue();
         }
+
+        table.hasBeenClicked(x, y);
     }
 
     @Override
